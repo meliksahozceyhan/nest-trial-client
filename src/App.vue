@@ -1,32 +1,18 @@
 <template>
-	<div id="app">
-		<div id="nav">
-			<router-link to="/">Home</router-link> |
-			<router-link to="/about">About</router-link>
-		</div>
-		<router-view />
-	</div>
+	<v-app>
+		<v-app-bar app clipped-left>
+			<v-app-bar-nav-icon @click="navigationDrawer = !navigationDrawer"></v-app-bar-nav-icon>
+		</v-app-bar>
+		<v-navigation-drawer v-model="navigationDrawer" app :clipped="true" width="320"> </v-navigation-drawer>
+		<v-main style="overflow-y: auto; height: 100%; overflow-x: hidden">
+			<perfect-scrollbar><router-view style="overflow-y: auto; height: 100%; overflow-x: hidden" id="router-view" :options="{ wheelSpeed: 0.5 }"></router-view></perfect-scrollbar>
+		</v-main>
+	</v-app>
 </template>
 
-<style>
-#app {
-	font-family: Avenir, Helvetica, Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
-	color: #2c3e50;
+<script>
+export default {
+	name: 'App',
+	data: () => ({ navigationDrawer: true })
 }
-
-#nav {
-	padding: 30px;
-}
-
-#nav a {
-	font-weight: bold;
-	color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-	color: #42b983;
-}
-</style>
+</script>
